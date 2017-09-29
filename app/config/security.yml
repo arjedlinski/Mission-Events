@@ -1,0 +1,45 @@
+security:
+    providers:
+        administrators:
+            entity:  
+                class: mcscMissionBundle:Users
+                property: username 
+        in_memory:
+            memory: 
+                users: 
+                    test:
+                       password: $2a$04$ntln4whzGtg.mKeIwIqHae8M9Afc6TDFegd.ukMWWOueZ3Ebw54f.
+                       roles: 'ROLE_ADMIN'
+
+    firewalls:
+            
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+
+        default:
+            anonymous: ~
+            http_basic: ~
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                remember_me: true
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path:     /
+                domain:   ~ # Defaults to the current domain from $_SERVER
+        
+            
+    access_control:
+            - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/*, roles: ['ROLE_ADMIN', 'ROLE_USER'] }
+            - { path: ^/m, roles: ['ROLE_USER','ROLE_ADMIN','ROLE_AUTHOR'] }
+            - { path: ^/m=, roles: ['ROLE_ADMIN', 'ROLE_AUTHOR'] }
+    encoders:
+      mcsc\MissionBundle\Entity\Users:
+            algorithm: bcrypt
+            cost: 12
+
+        
+

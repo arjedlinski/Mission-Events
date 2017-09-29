@@ -1,0 +1,28 @@
+{% extends 'common.html.twig' %}
+
+{% form_theme form 'collection_widget.twig' %}
+
+{% block contents %}
+   
+    {% stylesheets
+    '@mcscMissionBundle/Resources/public/css/jquery-ui.css'%}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {{ form_start(form) }}
+         {{ form_errors(form) }}
+ 
+         {{ form_end(form) }}
+   
+    {% javascripts
+    '@mcscMissionBundle/Resources/public/js/jquery-ui.min.js'
+    '@mcscMissionBundle/Resources/public/js/mcsc_mission_form.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    <div id="dialog_remove_section" title="Usunąć sekcję?" style="display: none;">
+     	<p>Czy na pewno chcesz usunąć całą sekcję wraz z slotami w niej?</p>
+	</div>
+
+{% endblock %}
+

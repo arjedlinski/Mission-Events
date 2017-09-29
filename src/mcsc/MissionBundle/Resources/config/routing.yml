@@ -1,0 +1,48 @@
+index:
+    path:     /
+    defaults: { _controller: mcscMissionBundle:Mission:index}
+events_with_filters:
+    path:     /events/show_only_my={show_only_my}&show_only_open={show_only_open}&show_only_i_entered={show_only_i_entered}&show_not_started={show_not_started} 
+    defaults: { _controller: mcscMissionBundle:Mission:list, show_only_my:0, show_only_open:0, show_only_i_entered:0, show_not_started:1}
+events:
+    path:     /events
+    defaults: { _controller: mcscMissionBundle:Mission:list}
+login:
+    path:     /login
+    defaults: { _controller: mcscMissionBundle:Mission:login, name: login_route }
+login_check:
+    path:     /login_check
+    defaults: { _controller: mcscMissionBundle:Mission:joinMission, name: login_check }
+    methods: [POST]
+logout:
+    path:     /logout
+    defaults: { _controller: mcscMissionBundle:Mission:logout }
+event_edit:
+    path:     /event/edit/{event_id}
+    defaults: {_controller: mcscMissionBundle:Mission:eventEdit}
+new_event:
+    path:     /new_event
+    defaults: { _controller: mcscMissionBundle:Mission:new }
+error:
+    path:     /error
+    defaults: { _controller: mcscMissionBundle:Mission:error }
+view_event:
+    path:     /event/{event_id}
+    defaults: { _controller: mcscMissionBundle:Mission:view }
+# Ajax
+list:
+    path:     /ajax/events_list
+    defaults: { _controller: mcscMissionBundle:Mission:AjaxEventList }
+remove:
+    path:     /ajax/event/{id}/remove
+    defaults: { _controller: mcscMissionBundle:Mission:remove }
+join_slot:
+    path:     /ajax/event/{mission_id}/join/{slot_id}
+    defaults: { _controller: mcscMissionBundle:Mission:joinSlot }
+exit_slot:
+    path:     /ajax/event/{mission_id}/exit/{slot_id}
+    defaults: { _controller: mcscMissionBundle:Mission:exitSlot }
+ajax_show:
+    path:     /ajax/event/{mission_id}
+    defaults: { _controller: mcscMissionBundle:Mission:showMission }
+    

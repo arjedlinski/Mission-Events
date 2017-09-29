@@ -1,0 +1,71 @@
+{% extends 'common.html.twig' %}
+{% block contents %}
+<div class="row">
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form id="filters">
+   		<label class="checkbox-inline">
+      		<input type="checkbox" name="show_only_my" {%  if show_only_my %}checked{% endif %}> Tylko moje
+   		</label>
+		<label class="checkbox-inline">
+      		<input type="checkbox" name="show_only_open" {%  if show_only_open %}checked{% endif %}> Tylko otwarte
+   		</label>
+		<label class="checkbox-inline">
+      		<input type="checkbox" name="show_only_i_entered" {%  if show_only_i_entered %}checked{% endif %}> Tylko te na które jesteś zapisany
+   		</label>
+   		<label class="checkbox-inline">
+      		<input type="checkbox" name="show_not_started" {%  if show_not_started %}checked{% endif %}> Tylko nierozpoczęte
+   		</label>
+	</form>
+   </div>
+</div>
+  
+</div>
+<div class="row">
+  {% javascripts
+    '@mcscMissionBundle/Resources/public/js/jquery-ui.min.js'
+    '@mcscMissionBundle/Resources/public/js/list_events.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+   <script>$(document).ready(loadData());</script>
+
+<div id="event_table"><center><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span><br /> Wczytywanie </center></div>
+</div>
+<div id="event_table_template" style="display: none" >
+    <table class="table table-striped">
+
+    <tr>
+		<th>Nazwa misji</th>
+		<th>Autor</th>
+		<th>Gra</th>
+		<th>TYP</th>
+		<th>Start misji</th>
+		<th>Koniec zapisów</th>
+		<th>Liczba slotów</th>
+		<th>Operacje</th>
+	</tr>
+
+	</table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="removeModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-danger" id="removeButton">Usuń</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

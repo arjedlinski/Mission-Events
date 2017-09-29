@@ -1,0 +1,4 @@
+services:
+#    mcsc_mission.example:
+#        class: mcsc\MissionBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

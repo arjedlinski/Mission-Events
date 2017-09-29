@@ -1,0 +1,4 @@
+mcsc_mission:
+    resource: "@mcscMissionBundle/Resources/config/routing.yml"
+    prefix:   /
+
